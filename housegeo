@@ -1,0 +1,16 @@
+var house ={
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.72590839862823,
+          35.934737284174886
+        ]
+      }
+    }
+  ]
+}

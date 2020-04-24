@@ -1,0 +1,16 @@
+var pool3 = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.71802806854248,
+          35.92524835188979
+        ]
+      }
+    }
+  ]
+}

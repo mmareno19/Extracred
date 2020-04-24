@@ -17,7 +17,11 @@
    <script src = "./firegeo"></script>
    
    <script src = "./poolgeo"></script>
+   <script src = "./housegeo"></script>
+   <script src = "./tennisgeo"></script>
 
+  <script src = "./polygeo"></script>
+  <script src = "./linegeo"></script>
   <style type="text/css">
     body {
        margin: 0;
@@ -46,7 +50,7 @@
             iconSize: [25,25],
             popupAnchor: [0,0]
         });
-        var custompop = "Local Fire Station <br/><img src='https://dhfd.org/wp-content/uploads/2018/09/durham-highway-fire-station.jpg'width='100px'/>";
+        var custompop = "My Local Fire Station <br/><img src='https://dhfd.org/wp-content/uploads/2018/09/durham-highway-fire-station.jpg'width='100px'/>";
 
         L.geoJSON(fire, {
         pointToLayer: function (feature, latlng) {
@@ -57,11 +61,11 @@
 
         var pool2 = L.geoJSON(pool3).addTo(map)
       var sta = L.icon({
-            iconUrl:'data:image/png;base64,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',
+            iconUrl:'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMSEhUSEw8VFRUVFRUVFhcXFRcYFRUVFRUWFxUYFRUYHSggGBolHRUVITEiJSktLjAuFx8zODMsNygtLisBCgoKDg0OGxAQGzcjICYtLTYvLTU3MDUrLTEuLTAtLi0tMC0tNS0vLTAtLS0tNS0vNy8vLS0tLS41Li0tLS0tLf/AABEIAOEA4QMBEQACEQEDEQH/xAAbAAEAAgMBAQAAAAAAAAAAAAAAAQIDBAYFB//EAEcQAAICAAIFBwYJCwMFAAAAAAABAgMEEQUGEiExB0FRYXGBkRMiUqGxwTIzQnJzgpOy0hQWRFNiY4OSs8LwI6LRFSQ0NVT/xAAZAQEAAwEBAAAAAAAAAAAAAAAAAQIEAwX/xAA0EQEAAQICBggGAgMBAQAAAAAAAQIDBBEFEiExkaEUMkFRgbHR8EJSYXHB4RMVIjSCMyP/2gAMAwEAAhEDEQA/APuIAABEZZgSAAAAAAAAAAAAAAAAARGWe8CQAAAAAAAAAAAAxykBaAFgAAAAAq2BGXWBZMCQAAAAAAY5SAvHgBIAAAAAVbAjvAsmBIADHKQExiBcAAAAAAFF7wAFkgJAAAAADHKQFoxAsAAAAAACkQAFkgJAiSArGIFwAAAAAAAIaAJASAAAAAFZrNARGPOBcAAAAAAACGgCQEgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEReYEgAAAAAAAAAAAAAAADYERee8CQAFZMCMu0C0WBIAAAAAAMcpAWggLAAAAABVsCEu0CyYEga+NxtdMdu22FceGc5KKz6M3zlqaKqpypjNWqumiM6pyYMBprD3vZqxFc5LflGacsunLjkWrtV0baomFaL1uvZTVEvn+ltZ8bi8TLD4LOMYuSWxsqUlB5Ocpy+DHPhw4rnZ6VvDWbVuK7rzLmJvXbk0Wvf1ToTS2kqMZXh73OalOEZqaU0lPLerI8+T6chdtYeu1NdHvwTau4ii7FFe333vpzPJesxylmBeK3ASAAqgIAskBIAAAAAY5SzAtGIFgAAAAAAUiAAskBIHyXH0z0npSdMrHGEJWQXPsQqezLZXTKSz7+rI9qiYw+HiqI2z+Xi1xOJxE0zOyM+X7enPk8tqxNVmHuXk4Srk3ZJqxNSzko7EMsssvFnHp9NVuYrjbt3bucuvQKqbkTROzZv38oanJh/51/0Vn9WBfH/+NP3jyUwH/tV9p831Js8h7DHJ5gWjECwAABDQBICQAAAB5ektYcLRutxMItfJz2p/yRzfqOtFi5X1aXGu/bo61Tm8dylYZbq6rbOvJQj63n6jXTo65PWmIZatI243RMvExXKZc3lVh649G05Tfgtk706NpjrTLPVpKqdlMQw/nLpe74uFiX7vD7vGUX7S3R8LRvnjPor0jFV7onh6jw+m7OfEL+JCv2SiNbB093OTVxlXfyhK1X0vL4Vtn1sU37JMdJwsdnJPRcVPbPEeo2knxtj33zfuHTcPHZyhHQsR385R+YOkP1tf20/wjp1ju5R6p6FiO/nPon8x9JLhbHuvmvcOmYeezlCOh4jv5yPVnS8fg2W/VxTXtkh0nCzviOH6OjYqO2eJCrTVXNiHl0zjZ/c2JnB1d3kmIxlPfylX86NLU/GQnl+8w+S8YxXtHRsLVunmjpOKp3xxj0bOE5Trlusw1c+nYlKD8HtFatG0fDVPvgtTpKvtpiffi6LQ3KBRfZCp1WQnOSjHNKUc3w85PP1GW7ga6KZqziYhrtY6iuqKcpiXOaof+5v+fi/6rNeJ/wBWn/nyZMN/tVf9ebu9Nay4bC/G3La9CPnTf1Vw7XkjzbWHuXerHj2PRu4i3b60+Ha4LkslnjbX00zfjbWz0tIRlaiPr+HnaPnO7P2/L6lNZnjvYIxAsAAAAAAAAA5LWXXunDN11ry1q3NJ5Qg/2p876l35G2xgq7m2rZDFfxtFvZTtlxv5ZpPST8zb8m/Q/wBKldTln53Y2zdqYfD79/GWDXxOI3buEe+L1NH8mWS2sRiVFc8a1w/iT3f7TjXpHsop4u1GjcuvVl9m9h9G6IqezCDxNi3ZRU733qHmLvyOdVzFVRnM6scP2602sLTsiNafGf093CW2RX/b6LVS5vKSqpXhWpyXejNVFM9evP7Zz55NFM1RH+FGX3yjyzbezjZfLw9fVsWW+var9hT/AOUdkzwj1Xyuz2xHGfRk/Irnxxkl9HXXH78Zka9EfD5/jJM0VT8Xl+c1oaPl8rFXS7fJr7kEJrjspjn6piie2qZ4fiGT/p8eedr/AIs17GiNefpwTqQlYCPpWfbW/iI159xCdSPcyvHCxXPP7Sf4hrT7yNWF1VlwcvFv25kZpyXS68yEpA1sVo+m34ymufzoRl7UWprqp3TkpVRTVvjN5MNTsHG2F0KdicJKS2JSUc08/gZ7OXcdpxd2aZpmc4lxjCWoqiqIymHzGdOInj8RDDbXlJXYhebLZez5WW152ayXA9fO3Fmmbm7KPJ5GVc3qot78583VaF5NVnt4q3afFwrbSb59qx733Jdpju6Rndbjxn0bLWjo33J8I9Xl8mdsK8bZGUlHarnCCb+E/KQaSz4vJPwO2PiarMT9Y8nLAzFN6Yn6+b6ueM9kAAAAAAAAAcTyl6wTorjRVLZnam5SXGNa3buhybyz6EzfgbEV1TVVujzefj780UxTT2+TU1N1GhsRvxUdqUkpRqfwYp705r5UurgufN8L4rGznNFviphcFGUV3OHq6LWnTv5HCuFVSnbbLYphwjnuW/LmW1FZdfNxMuHsfyzM1TlEb5asRf8A4oiKYzmd0NbCarO3KzH3SxE+Pk82sPDqVayUsul8egvViYp2WY1Y7+2VKcNNW29Oc93ZDpKKIwiowhGMVwUUkl2JGWZmZzlriIiMoZCEgGGeKgvlJ9S85+CzZOrKutDDLH+jTbPshs/1NlFtTvmPf2Rr90T7+6qxVz4YZr6SyC+5tjVpjt9+ORrVT2e+bXux2Kjv/IlNfu74uXhZGC9ZeKLc/Fl949M1JruR8Of2n1yUhrLSt1qsw76Lq5QX2m+D7pE9Hr+Hb9vTejpFHxbPv67m3Tpiifxd8LOquSm/CGbKVWq6d8ZLxdoq6s5/Ztwm3zZdv/H/ACc11wkAAfHdH6XhhNJYm+cZSSsxMdmOWbbteXF7luPcrtTdsU0x3R5PDouxav1Vz31ebbv0/pDSUnXRBwr4ONbySX7255eCyz6GUixYw8Z1znPvdC037+InKiMo+n5li0zqFdh8P5fyqnKHnWRimtmK+VCXGWXF7lu7N82sdRcr1Mss9yLuCroo188+92PJ5p+WKolCx52UtRcueUZJ7En17pJ9mfOYcbYi1XnTuluwV+btExVvh1ZjbQAAAAAAAD5pyt6OltVYhLOOy6pP0Xm5Rz7dqXgero25G2jxeTpK3Oyrs3Ov1T1hrxlKaaVkUlZDni+ldMXzP3mLEYeqzVlO7sluw+Ipu07N/bDNp7Qyv8lZGSjbRNWVSazjnu2oSXoyySeW9ZJ9Trau6mcTunetdta+Uxvjc9HD2trzoOMudcV3SXFf40jlMZbnWJz3spCQAAA1MVXe/i7a4/PqlP7tkS9M0fFE8f0pVFfwzHD9w1qqMZn5+Jo2f2MPNS7nK1peDLzNrsieP6Uim721Rw/bZowtkZZvETmueMo15fVcIxa78yk1RMbsuK8U1RO/ybZRdCQGvjNIU1b7bq6/nzjH2stTRVV1YzUquU09acnkX664GHHFRfzYzn64xZ3jB3p+FwnGWI+Jp2coeBXCdkuyuXvyLxgL3dzU6fZ7+TXnylYRcK732Qh75ovGjrvfHvwVnSNrun34vn9GOw7xdl99U51TstsUE0pefNyjtb+G/es/E9Kqiv8Aiiiicpyja82K6P5ZqrjOM52OujykVVxUacDlFcI7cYJLqUYsxf19VU51VNv9hTTGVNDytI6+YrFKVNVMY7acWoRlZY01k0vH0TtRgbdr/Kqd3hDhXjrl3/GmPzPvwdTycavW4WFlly2ZW7KUOeMYbWTl0N7T3c2S7Fjx2IpuTEU7obMDh6rcTNW+XZGFvAAAAAAAAMOMwsLYSrsgpQkspRfBommqaZzjerVTFUZTufMtOakYjDT8tg5TnGO9KLyur6t3w12b30Pievaxlu5Grd/U+jybuDuW51re3zj1ZNEco9tfmYqnymW5yj5liy9KD3N/ykXNH01bbc5eXvim1pCqnZcjPz98HY6N1xwd+SjiIwk/k2eY8+jOW5vsbMFzCXaN9LdRi7Ve6eL3YyTWaea6VwM7SkAAAAAAGtpLHQorlbZLZhFZt+pJLnbeSS6y1FE11RTTvUrrpop1qtz5dpDWnHY+x1YaM4R5oV7p5dNlnyfFLm3nr0YazYp1rm37/iHkV4m9fq1bez6R+ZZ8Dya4ifnXXwrb3vJOyXe80s+9kVaRop2UxnyWp0dXO2qcub2aOTLDr4eIul2bEV91medI3OyId40dR2zPJu18neCXGNku2x/25FJx976cHToFn68WeGoWAX6O3222/iKzjr/fyhaMDY7uc+rPHUvAr9Fj3ym/bIr0y98y3RLPytirVjBx3rB099cX7UUnE3Z+KVow1mN1McHpUYeEFlCEYroikl4I5TMzvdopiNzKQkAAAAAAAArGWfMBYAB52ldB4fEr/WojN8FLLKa7JrevE6271dvqzk5XLFu51ozclpHkyqebpxEofszSnHuaya9Zto0jVHWjNir0dTPVnJ4k9TNJYd50Tz+hucG+2Mtn3nfpmHudeOMM/Q8Rb6nKRab0xh9043NL06NuP88Y+8fw4SvdlxP5sVb358PRkp5TcRHdZTTJro2oP1tkTo2ierMpjSVyNlUR5PQp5UV8rBv6tufqcUc50b3VcnWNJd9PNtQ5TqOfD3Ls8m/7kUnRtz5o5+i/9lR8s8vVmjymYT9ViF9Wv3WFf6673xz9ExpG33Ty9Uy5SsJ+rvf1Ie+Y/rrvfHvwT/Y2u6ffi5PWPWC3SdtdFNUlHa8yGecpS4bc2tySWfUt7z6NljD0Yama6p9/Riv368RVFNMeHq+l6t6EhhKY1xyctzsnlvnPnb6uZLoPKv3pu160+D1rFmLVGrHi9U4uw2BEXmuAEgAAAAAAAAAAABjlLMC0EBYAAAAAKtgY7cPGW6UE/nJP2kxMxuRMRO9oWavYSfwsHQ39FDPxSOkX7sbqp4uU4e1O+mODXnqdgX+iQ7tpexl4xd6PiV6JZ+WGCWomAf6M+621f3l+m3/m5R6KdBsfLzn1VWoWA/8Anf2tv4x06/8ANyj0Og2Pl5z6vZ0boijDpqmmFefFxW99suL7zhXdrudac3ei1Rb6sZN05ug2BibzAyRQEgAAAABRvP8AziAS6ALJgSAAxylmBaMQLAAAAAAAqgAEpASAAAAIbAxyeYF4xAsAAAAAACkQAFkgJAhoCIxAsAAAAAAABDQBICQAAAAAiSzAiMQLAAAAAAAAQ0ASAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYFYPMCwAAAAAAAAAAAAAAACs5eIEoCQAFWwI2QLRYEgAAAABDYFJPMC8UBIAAAAAUbz/ziA2fEC0WBIAAAAAVlLICiWYGUAAAqBAFkgJAAAABsDG5ZgWjECwAAAAAAKoCMgLJASAAAAKylkBRbwMiQEgAAENAEgJAAAAACGgIjECwAAAAAAAENAEgJAAAAACJRzAJASAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//9k=',
             iconSize: [25,25],
             popupAnchor: [0,0]
         });
-        var custom = "Pool <br/><img src='https://dhfd.org/wp-content/uploads/2018/09/durham-highway-fire-station.jpg'width='100px'/>";
+        var custom = "My Local Pool <br/><img src='https://www.teamunify.com/mvwvst/_images/mphoto_5793_3_1395933505774.jpg'width='100px'/>";
 
         L.geoJSON(pool3, {
         pointToLayer: function (feature, latlng) {
@@ -69,18 +73,38 @@
         .bindPopup(custom) // d
         .addTo(pool2)
 
-        var ima = {
-      "Neighborhood Pool": pool2,
       
-    }
-    
-   
-     L.control.layers(images,ima).addTo(map)
         
-       
+        var thehouse = L.geoJSON(house).addTo(map)
+      var sta = L.icon({
+            iconUrl:'https://image.flaticon.com/icons/svg/25/25694.svg',
+            iconSize: [25,25],
+            popupAnchor: [0,0]
+        });
+        var custom = "My House <br/><img src='https://photos.zillowstatic.com/p_h/IS2r5hajtshztj0000000000.jpg'width='100px'/>";
 
+        L.geoJSON(house, {
+        pointToLayer: function (feature, latlng) {
+        return L.marker(latlng, {icon: sta});}})
+        .bindPopup(custom) // d
+        .addTo(thehouse)
 
-       
+        var courts = L.geoJSON(tennis).addTo(map)
+      var sta = L.icon({
+            iconUrl:'https://cdn1.iconfinder.com/data/icons/sport-line-12/64/Racket_racquette_sport_tennis_icon-512.png',
+            iconSize: [25,25],
+            popupAnchor: [0,0]
+        });
+        var custom = "My Neighborhood Tennis Courts <br/><img src='https://www.hawthorneattheparkway.com/uploads/images/images/original/362794/Hawthorne_at_the_Parkway_8_.jpg?1534544337'width='100px'/>";
+
+        L.geoJSON(tennis, {
+        pointToLayer: function (feature, latlng) {
+        return L.marker(latlng, {icon: sta});}})
+        .bindPopup(custom) // d
+        .addTo(courts)
+
+        var gone = L.geoJSON(poly).addTo(map)
+        L.geoJSON(line).addTo(map)
       
   </script>
 </body>
