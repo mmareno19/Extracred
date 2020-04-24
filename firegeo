@@ -1,0 +1,16 @@
+var fire = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.72089803218842,
+          35.93018299942808
+        ]
+      }
+    }
+  ]
+}
